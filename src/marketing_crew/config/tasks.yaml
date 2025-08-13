@@ -1,0 +1,45 @@
+research_task:
+  description: >
+    Utfør en grundig research om {topic}.
+    Bruk SerperDevTool til å hente relevante kilder fra Norge.
+    Sørg for å finne all interessant og relevant informasjon gitt at året er {current_year}.
+  expected_output: >
+    En liste med 10 punkter med den mest relevante informasjonen om {topic}, fokusert på Norge.
+  agent: researcher
+
+reporting_task:
+  description: >
+    Gå gjennom research-resultatene og utvid hvert punkt til en full seksjon for en rapport.
+    Rapporten skal være detaljert og inneholde all relevant informasjon.
+  expected_output: >
+    En fullstendig rapport med hovedpunkter, hver med full seksjon av informasjon.
+    Formater som markdown uten '```'
+  agent: reporting_analyst
+  depends_on: research_task
+
+content_social_task:
+  description: >
+    Lag engasjerende innhold for sosiale medier basert på rapporten.
+    Tilpass innholdet til norsk språk og norske målgrupper.
+  expected_output: >
+    En serie forslag til innlegg for sosiale medier (Facebook, Instagram, LinkedIn), med tekst og forslag til grafikk eller emoji.
+  agent: content_creator_social
+  depends_on: reporting_task
+
+blog_task:
+  description: >
+    Skriv en detaljert bloggpost basert på rapporten og research-resultater.
+    Sørg for at innholdet er på norsk, SEO-optimalisert, og lett å lese.
+  expected_output: >
+    En full bloggpost med overskrift, ingress, avsnitt, underoverskrifter, og call-to-action.
+  agent: content_blog_writer
+  depends_on: content_social_task
+
+seo_task:
+  description: >
+    Analyser bloggen og sosiale medier-innholdet for SEO.
+    Gi forslag til forbedringer som kan øke synlighet i norske søk.
+  expected_output: >
+    En liste med SEO-forbedringsforslag inkludert nøkkelord, meta-beskrivelser og interne lenker.
+  agent: seo_specialist
+  depends_on: blog_task
